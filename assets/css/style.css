@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  width: 1440px;
+  height: 104px;
+
+  margin: 16px auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+ a {
+  text-decoration: none;
+  color: black;
+}
+header li {
+  list-style: none;
+}
+.menu ul {
+  width: 564px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tel {
+  width: 180px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fa-solid {
+  background-color: #5937e0;
+  padding: 10px 30px 10px 10px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.hero {
+  width: 1296px;
+  height: 660px;
+  border-radius: 40px;
+  margin: auto;
+  background-color: #5937e0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.road {
+  width: 686px;
+  height: 503px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.road h1 {
+  font-size: 60px;
+  color: #fff;
+}
+
+.road button {
+  width: 154px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background-color: #ff9e0c;
+  color: #fff;
+  border: none;
+}
+
+form {
+  width: 416px;
+  height: 503px;
+  border-radius: 20px;
+  /* border: 1px solid white; */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: space-evenly;
+  text-align: center;
+}
+.mo {
+  width: 336px;
+  height: 38px;
+  margin-bottom: 5px;
+  background-color: #fafafa;
+  border-radius: 9px;
+  border: 1px solid white;
+  font-size: 15px;
+}
+
+form h3 {
+  font-size: 30px;
+}
+
+.submit {
+  width: 336px;
+  height: 40px;
+  border-radius: 12px;
+  font-size: 20px;
+  background-color: #ff9e0c;
+  color: white;
+}
+.joy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.hal {
+  width: 357px;
+  height: 194px;
+  text-align: center;
+  margin-right: 65px;
+  
+}
+.hal i{
+  color: black;
+  background-color: white;
+  font-size: 49px;
+}
+
+.no{
+  display: flex;
+  
+}
+
+.br{
+  background-color: #5937e0;
+  padding: 10px 20px 10px 20px;
+  border-radius: 50%;
+  color: #fff;
+
+  
+}
+
+.ohiri{
+  padding: 60px 72px 60px 958px;
+}
+
+.il{
+  width: 1296px;
+  height: 118px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+.ko{
+  font-size: 25px;
+}
+
+.il i{
+  background-color: aliceblue;
+ color: black;
+}
