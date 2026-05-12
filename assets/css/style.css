@@ -185,20 +185,64 @@ select {
   flex-direction: column;
   justify-content: space-between;
 }
-.lupa{
+
+/* car-section */
+
+.car-section {
+  width: 1440px;
+  height: 1328px;
+  border: 1px solid red;
+  margin: auto;
+}
+
+.car-section-header {
+  width: 1296px;
+  height: 118px;
+  border: 1px solid magenta;
+}
+
+.car-grid {
+  width: 1296px;
+  height: 1050px;
+  border: 1px solid blue;
+}
+.car-card {
+  width: 416px;
+  height: 513px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.car-card > img {
+  width: 368px;
+  height: 240px;
+}
+.car-card-content {
+  width: 368px;
+  height: 115px;
+  border: 1px solid red;
+}
+.car-card-price {
+  width: 368px;
+  height: 51px;
+  border: 1px solid red;
   display: flex;
   justify-content: space-between;
-  align-items: end;
-  
+  align-items: center;
 }
-
-
-.gap{
-  font-size: 50px;
+.car-card-price > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
 }
-
-
-.p{
-  font-size: 16px;
+.car-card > button {
+  width: 368px;
+  height: 50px;
+  background-color: #5937E0;
+  border-radius: 12px;
+  color: #fff;
+  border: none;
 }
-
