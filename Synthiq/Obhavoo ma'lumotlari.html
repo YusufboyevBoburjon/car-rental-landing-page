@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthiq - Global Real-Time Weather</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+    <style>
+        body {
+            background: linear-gradient(-45deg, #0b1528, #1e1b4b, #3b0764, #020617);
+            background-size: 400% 400%;
+            animation: atmosphericBG 20s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes atmosphericBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Ultra-Glassmorphism Shaffoflik paneli */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* Realistik 3D sun'iy bulutlar animatsiyasi */
+        .cloud {
+            position: absolute;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, rgba(240,240,250,0.25) 70%, rgba(255,255,255,0) 100%);
+            border-radius: 50%;
+            filter: blur(15px);
+            animation: floatCloud linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes floatCloud {
+            0% { transform: translateX(-300px) scale(0.8); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateX(105vw) scale(1.2); opacity: 0; }
+        }
+
+        /* Neon nurlanish effekti realizm uchun */
+        .neon-glow {
+            filter: drop-shadow(0 0 15px rgba(129, 140, 248, 0.6));
+        }
+    </style>
+</head>
+<body class="min-h-screen text-white flex flex-col items-center justify-center p-4 relative font-sans select-none">
+
+    <div id="clouds-layer" class="absolute inset-0 overflow-hidden"></div>
+
+    <div class="glass-panel w-full max-w-lg rounded-3xl p-6 z-10 transition-all duration-500">
+        
+        <div class="text-center mb-6">
+            <h1 class="text-4xl font-black tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-indigo-200 to-purple-400">
+                SYNTHIQ
+            </h1>
+            <p class="text-[10px] text-white/40 uppercase tracking-[0.3em] mt-1.5">Real-Time Realistik Ob-Havo Tizimi</p>
+        </div>
+        
+        <div class="flex gap-2 mb-6">
+            <input type="text" id="target-city" placeholder="Istalgan shahar yoki davlat... (e.g. London, Tokyo)" 
+                class="w-full px-5 py-3.5 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 text-base font-light transition-all">
+            <button id="fetch-btn" class="bg-indigo-600/80 hover:bg-indigo-500 text-white px-6 py-3.5 rounded-2xl font-semibold transition-all active:scale-95 shadow-lg cursor-pointer text-sm">
+                Qidirish
+            </button>
+        </div>
+
+        <div id="status-loader" class="hidden text-center py-12">
+            <div class="inline-block w-8 h-8 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin mb-3"></div>
+            <p class="text-xs tracking-widest text-indigo-200/60 animate-pulse uppercase">Global tarmoqqa bog'lanilmoqda...</p>
+        </div>
+
+        <div id="weather-dashboard" class="text-center">
+            <h2 id="display-location" class="text-3xl font-light tracking-wide text-white/90">Toshkent</h2>
+            <p id="live-time" class="text-xs text-white/40 mt-1 font-mono">Yuklanmoqda...</p>
+
+            <div class="flex flex-col items-center my-8 relative">
+                <div id="weather-icon-wrapper" class="text-7xl text-indigo-200 neon-glow animate-bounce duration-[4000ms]">
+                    <i class="ri-sun-line"></i>
+                </div>
+                <h1 id="live-temp" class="text-7xl font-thin tracking-tighter mt-4 text-white/95">--°C</h1>
+                <p id="live-condition" class="text-sm font-medium tracking-widest uppercase mt-2 text-indigo-200">Musaffo Osmon</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3.5 mt-6">
+                <div class="glass-card p-4 rounded-2xl flex flex-col items-center">
+                    <i class="ri-drop-line text-blue-400 text-xl mb-1"></i>
+                    <span class="text-[10px] tracking-widest text-white/40 uppercase font-bold">Havo Namligi</span>
+                    <span id="stat-humidity" class="text-lg font-semibold mt-1 text-white/80">--%</span>
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex flex-col items-center">
+                    <i class="ri-windy-line text-teal-400 text-xl mb-1"></i>
+                    <span class="text-[10px] tracking-widest text-white/40 uppercase font-bold">Shamol Tezligi</span>
+                    <span id="stat-wind" class="text-lg font-semibold mt-1 text-white/80">-- m/s</span>
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex flex-col items-center">
+                    <i class="ri-dashboard-3-line text-purple-400 text-xl mb-1"></i>
+                    <span class="text-[10px] tracking-widest text-white/40 uppercase font-bold">Atmosfera Bosimi</span>
+                    <span id="stat-pressure" class="text-lg font-semibold mt-1 text-white/80">-- hPa</span>
+                </div>
+                <div class="glass-card p-4 rounded-2xl flex flex-col items-center">
+                    <i class="ri-umbrella-line text-indigo-400 text-xl mb-1"></i>
+                    <span class="text-[10px] tracking-widest text-white/40 uppercase font-bold">Yog'ingarchilik</span>
+                    <span id="stat-precip" class="text-lg font-semibold mt-1 text-white/80">-- mm</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="error-screen" class="hidden text-center py-6 bg-red-500/10 rounded-2xl border border-red-500/20 text-red-300 text-sm font-light">
+            Joylashuv topilmadi. Iltimos, shahar nomini to'g'ri yozganingizni tekshiring!
+        </div>
+
+    </div>
+
+    <script>
+        const targetCity = document.getElementById('target-city');
+        const fetchBtn = document.getElementById('fetch-btn');
+        const weatherDashboard = document.getElementById('weather-dashboard');
+        const errorScreen = document.getElementById('error-screen');
+        const statusLoader = document.getElementById('status-loader');
+        const cloudsLayer = document.getElementById('clouds-layer');
+        const iconWrapper = document.getElementById('weather-icon-wrapper');
+
+        async function fetchRealTimeWeather(query) {
+            if (!query) return;
+            
+            weatherDashboard.classList.add('hidden');
+            errorScreen.classList.add('hidden');
+            statusLoader.classList.remove('hidden');
+
+            try {
+                const res = await fetch(`https://wttr.in/${encodeURIComponent(query)}?format=j1`);
+                if (!res.ok) throw new Error('Xatolik');
+                
+                const data = await res.json();
+                renderWeatherGrid(data);
+            } catch (err) {
+                statusLoader.classList.add('hidden');
+                errorScreen.classList.remove('hidden');
+            }
+        }
+
+        function renderWeatherGrid(data) {
+            statusLoader.classList.add('hidden');
+            weatherDashboard.classList.remove('hidden');
+
+            const current = data.current_condition[0];
+            const area = data.nearest_area[0];
+            
+            const cityName = area.areaName[0].value;
+            const countryName = area.country[0].value;
+            document.getElementById('display-location').innerText = `${cityName}, ${countryName}`;
+            
+            document.getElementById('live-temp').innerText = `${current.temp_C}°C`;
+            document.getElementById('stat-humidity').innerText = `${current.humidity}%`;
+            document.getElementById('stat-wind').innerText = `${(current.windspeedKmph / 3.6).toFixed(1)} m/s`;
+            document.getElementById('stat-pressure').innerText = `${current.pressure} hPa`;
+            document.getElementById('stat-precip').innerText = `${current.precipMM} mm`;
+
+            const conditionText = current.weatherDesc[0].value;
+            document.getElementById('live-condition').innerText = conditionText;
+
+            const dateOptions = { weekday: 'long', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            document.getElementById('live-time').innerText = new Date().toLocaleDateString('uz-UZ', dateOptions);
+
+            // Ob-havo holatiga qarab realistik grafik belgilarni (Ikonkalarni) almashtirish
+            let conditionCode = conditionText.toLowerCase();
+            let iconClass = 'ri-sun-line'; // Quyoshli (Default)
+            let cloudDensity = 2;
+
+            if (conditionCode.includes('cloud') || conditionCode.includes('overcast')) {
+                iconClass = 'ri-cloudy-line'; // Bulutli
+                cloudDensity = 8;
+            } else if (conditionCode.includes('rain') || conditionCode.includes('shower') || conditionCode.includes('drizzle')) {
+                iconClass = 'ri-rainy-line'; // Yomg'ir
+                cloudDensity = 12;
+            } else if (conditionCode.includes('snow') || conditionCode.includes('ice')) {
+                iconClass = 'ri-snowy-line'; // Qor
+                cloudDensity = 6;
+            } else if (conditionCode.includes('thunder') || conditionCode.includes('storm')) {
+                iconClass = 'ri-thunderstorms-line'; // Chaqmoq / Bo'ron
+                cloudDensity = 10;
+            } else if (conditionCode.includes('clear') || conditionCode.includes('sunny')) {
+                iconClass = 'ri-sun-line'; // Musaffo quyosh
+                cloudDensity = 1;
+            } else if (conditionCode.includes('fog') || conditionCode.includes('mist')) {
+                iconClass = 'ri-mist-line'; // Tuman
+                cloudDensity = 4;
+            }
+
+            // Ichki HTML-ga yangi realistik klassni joylash
+            iconWrapper.innerHTML = `<i class="${iconClass}"></i>`;
+            
+            // Orqa fondagi bulutlarni yangilash
+            spawnAtmosphericClouds(cloudDensity);
+        }
+
+        function spawnAtmosphericClouds(density) {
+            cloudsLayer.innerHTML = '';
+            for (let i = 0; i < density; i++) {
+                const cloud = document.createElement('div');
+                cloud.classList.add('cloud');
+                
+                const radius = Math.floor(Math.random() * 200) + 150; 
+                const topPosition = Math.floor(Math.random() * 45); 
+                const duration = Math.floor(Math.random() * 30) + 25; 
+                const delay = Math.floor(Math.random() * 25) * -1; 
+
+                cloud.style.width = `${radius}px`;
+                cloud.style.height = `${radius * 0.6}px`;
+                cloud.style.top = `${topPosition}%`;
+                cloud.style.animationDuration = `${duration}s`;
+                cloud.style.animationDelay = `${delay}s`;
+
+                cloudsLayer.appendChild(cloud);
+            }
+        }
+
+        fetchBtn.addEventListener('click', () => fetchRealTimeWeather(targetCity.value));
+        targetCity.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') fetchRealTimeWeather(targetCity.value);
+        });
+
+        // Boshlang'ich yuklash
+        fetchRealTimeWeather('Tashkent');
+    </script>
+</body>
+</html>
