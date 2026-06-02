@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Vehicles</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -17,14 +17,13 @@
       href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/vehicles.css" />
   </head>
-
   <body>
-     <header>
+    <header>
       <div class="logo">
         <i class="fa-solid fa-car"></i>
-        <a href="#">Car Rental</a>
+        <a href="./index.html">Car Rental</a>
       </div>
       <div class="menu">
         <ul>
@@ -39,119 +38,17 @@
         <i class="fa-solid fa-phone"></i>
         <a href="#">Need help? <br />+998991234567</a>
       </div>
-    </header> 
+    </header>
 
-    <div class="hero">
-      <div class="road">
-        <h1>Experience the road like never before</h1>
-        <p>
-          Aliquam adipiscing velit semper morbi. Purus non eu cursus porttitor
-          tristique et gravida. Quis nunc interdum gravida ullamcorper
-        </p>
-        <button>View all cars</button>
-      </div>
-      <form action="#">
-        <h3>Book your car</h3>
-        <div>
-          <select name="" id="">
-            <option value="car">Car type</option>
-            <option value="car">BMW</option>
-          </select>
-          <select name="" id="">
-            <option value="place">Place of rental</option>
-            <option value="place">Xitoy</option>
-          </select>
-          <select name="" id="">
-            <option value="place">Place of rental</option>
-            <option value="place">Xitoy</option>
-          </select>
-          <input type="date" name="" id="" />
-          <input type="date" name="" id="" />
-        </div>
-
-        <input type="submit" value="Book now" />
-      </form>
-    </div>
-
-    <div class="features">
-      <div class="features_item">
-        <i class="fa-solid fa-location-dot"></i>
-        <b>Availability</b>
-        <p>
-          Diam tincidunt tincidunt erat at semper fermentum. Id ultricies quis
-        </p>
-      </div>
-      <div class="features_item">
-        <i class="fa-solid fa-car-side"></i>
-        <b>Comfort</b>
-        <p>
-          Gravida auctor fermentum morbi vulputateac egestas orcietium convallis
-        </p>
-      </div>
-      <div class="features_item">
-        <i class="fa-solid fa-wallet"></i>
-        <b>Savings</b>
-        <p>
-          Pretium convallis id diam sed commodo vestibulum lobortis volutpat
-        </p>
-      </div>
-    </div>
-
-    <div class="process">
-      <img src="./assets/img/img.png" alt="" />
-      <div class="process_content">
-        <div>
-          <div>
-            <span>1</span>
-            <b>Erat at semper</b>
-          </div>
-          <p>
-            Non amet fermentum est in enim at sit ullamcorper. Sit elementum
-            rhoncus nullam feugiat. Risus sem fermentum
-          </p>
-        </div>
-        <div>
-          <div>
-            <span>2</span>
-            <b>Urna nec vivamus risus duis arcu </b>
-          </div>
-          <p>
-            Aliquam adipiscing velit semper morbi. Purus non eu cursus porttitor
-            tristique et gravida. Quis nunc interdum gravida ullamcorper
-          </p>
-        </div>
-        <div>
-          <div>
-            <span>3</span>
-            <b>Lobortis euismod imperdiet tempus </b>
-          </div>
-          <p>
-            Viverra scelerisque mauris et nullam molestie et. Augue adipiscing
-            praesent nisl cras nunc luctus viverra nisi
-          </p>
-        </div>
-        <div>
-          <div>
-            <span>4</span>
-            <b>Cras nulla aliquet nam eleifend amet et</b>
-          </div>
-          <p>
-            Aliquam adipiscing velit semper morbi. Purus non eu cursus porttitor
-            tristique et gravida. Quis nunc interdum gravida ullamcorper sed
-            integer. Quisque eleifend tincidunt vulputate libero
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- car-section -->
-    <div class="car-section">
-      <div class="car-section-header">
-        <h2>
-          Choose the car that <br />
-          suits you
-        </h2>
-        <button>View all <i class="fa-solid fa-arrow-right"></i></button>
+    <div class="select">
+      <h1>Select a vehicle group</h1>
+      <div class="btns">
+        <button select>All vehicles</button>
+        <button><i class="fa-solid fa-car-side"></i>Sedan</button>
+        <button><i class="fa-solid fa-car-side"></i>Cabriolet</button>
+        <button><i class="fa-solid fa-truck-pickup"></i>Pickup</button>
+        <button><i class="fa-solid fa-car-side"></i>Suv</button>
+        <button><i class="fa-solid fa-car-side"></i>Minivan</button>
       </div>
       <div class="car-grid">
         <div class="car-card">
@@ -297,90 +194,91 @@
           </div>
           <button>View details</button>
         </div>
+
+        <div class="car-card">
+          <img src="./assets/img/car.jpg" alt="" />
+          <div class="car-card-content">
+            <div class="car-card-price">
+              <div>
+                <h3>Mercedes</h3>
+                <span>Sedan</span>
+              </div>
+              <div>
+                <h3>$25</h3>
+                <span>per day</span>
+              </div>
+            </div>
+            <div class="car-card-feature">
+              <ul>
+                <li><i class="fa-brands fa-whmcs"></i>Automat</li>
+                <li><i class="fa-solid fa-gas-pump"></i>PB 95</li>
+                <li><i class="fa-regular fa-snowflake"></i>Air Conditioner</li>
+              </ul>
+            </div>
+          </div>
+          <button>View details</button>
+        </div>
+
+        <div class="car-card">
+          <img src="./assets/img/car.jpg" alt="" />
+          <div class="car-card-content">
+            <div class="car-card-price">
+              <div>
+                <h3>Mercedes</h3>
+                <span>Sedan</span>
+              </div>
+              <div>
+                <h3>$25</h3>
+                <span>per day</span>
+              </div>
+            </div>
+            <div class="car-card-feature">
+              <ul>
+                <li><i class="fa-brands fa-whmcs"></i>Automat</li>
+                <li><i class="fa-solid fa-gas-pump"></i>PB 95</li>
+                <li><i class="fa-regular fa-snowflake"></i>Air Conditioner</li>
+              </ul>
+            </div>
+          </div>
+          <button>View details</button>
+        </div>
+
+        <div class="car-card">
+          <img src="./assets/img/car.jpg" alt="" />
+          <div class="car-card-content">
+            <div class="car-card-price">
+              <div>
+                <h3>Mercedes</h3>
+                <span>Sedan</span>
+              </div>
+              <div>
+                <h3>$25</h3>
+                <span>per day</span>
+              </div>
+            </div>
+            <div class="car-card-feature">
+              <ul>
+                <li><i class="fa-brands fa-whmcs"></i>Automat</li>
+                <li><i class="fa-solid fa-gas-pump"></i>PB 95</li>
+                <li><i class="fa-regular fa-snowflake"></i>Air Conditioner</li>
+              </ul>
+            </div>
+          </div>
+          <button>View details</button>
+        </div>
       </div>
     </div>
 
-    <!-- statistics -->
-    <div class="statistics">
-      <div class="static-in">
-        <div class="top">
-          <h2>Facts in numbers</h2>
-          <p>
-            Amet cras hac orci lacus. Faucibus ipsum arcu lectus nibh sapien
-            bibendum ullamcorper in. Diam tincidunt tincidunt erat at semper
-            fermentum
-          </p>
-        </div>
-        <div class="bottom">
-          <div class="static-car">
-            <div class="icon"><i class="fa-solid fa-car"></i></div>
-            <div class="st">
-              <b>540+</b>
-              <span>Cars</span>
-            </div>
-          </div>
-          <div class="static-car">
-            <div class="icon">
-              <i class="fa-solid fa-users"></i>
-            </div>
-            <div class="st">
-              <b>20K+</b>
-              <span>Customers</span>
-            </div>
-          </div>
-          <div class="static-car">
-            <div class="icon">
-              <i class="fa-regular fa-calendar"></i>
-            </div>
-            <div class="st">
-              <b>25+</b>
-              <span>Years</span>
-            </div>
-          </div>
-          <div class="static-car">
-            <div class="icon"><i class="fa-solid fa-gauge-high"></i></div>
-            <div class="st">
-              <b>20m+</b>
-              <span>Miles</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- download -->
-    <div class="download">
-      <div class="download-left">
-        <h2>
-          Download <br />
-          mobile app
-        </h2>
-        <p>
-          Imperdiet ut tristique viverra nunc. Ultrices orci vel auctor cursus
-          turpis nibh placerat massa. Fermentum urna ut at et in. Turpis aliquet
-          cras hendrerit enim condimentum. Condimentum interdum risus bibendum
-          urna
-        </p>
-        <div class="btns">
-          <button>
-            <img src="./assets/img/apple.png" alt="" />
-            <div>
-              <p class="dwn">Download on the</p>
-              <p class="apps">App Store</p>
-            </div>
-          </button>
-          <button>
-            <img src="./assets/img/googleplay.png" alt="" />
-            <div>
-              <p class="dwn">GET IN ON</p>
-              <p class="apps">Google Play</p>
-            </div>
-          </button>
-        </div>
-      </div>
-      <div class="download-right">
-        <img class="iphone-1" src="./assets/img/iphone.png" alt="" />
-        <img class="iphone-2" src="./assets/img/iphone.png" alt="" />
+    <!-- logos -->
+    <div class="logos">
+      <div class="logos-in">
+        <img src="./assets/img/logo-1.png" alt="" />
+        <img src="./assets/img/logo-1.png" alt="" />
+        <img src="./assets/img/logo-2.png" alt="" />
+        <img src="./assets/img/logo-3.png" alt="" />
+        <img src="./assets/img/logo-4.png" alt="" />
+        <img src="./assets/img/logo-5.png" alt="" />
+        <img src="./assets/img/logo-6.png" alt="" />
       </div>
     </div>
 
@@ -459,8 +357,5 @@
       </div>
       <span> © Front-End Developers Group 2026</span>
     </footer>
-
-    <!-- search -->
-    
   </body>
 </html>
