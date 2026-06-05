@@ -1,0 +1,124 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Atkinson Hyperlegible", sans-serif;
+}
+
+header {
+  width: 1440px;
+  height: 104px;
+  margin: 16px auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+header a {
+  text-decoration: none;
+  color: black;
+}
+
+header li {
+  list-style: none;
+}
+
+.menu ul {
+  width: 564px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tel {
+  width: 180px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tel .fa-phone {
+  background-color: #5937e0;
+  padding: 10px 30px 10px 12px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+/* tech specification */
+.tech-about {
+    width: 1440px;
+    height: 860px;
+    margin: auto;
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: start;
+    padding-top: 60px;
+}
+.tech-about .tech {
+    width: 636px;
+    height: 557px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.tech-about h2 {
+    font-size: 40px;
+}
+.tech-about .tech b {
+    font-size: 40px;
+    color: #5937e0;
+}
+.tech-about .tech > img {
+    width: 636px;
+    height: 303px;
+}
+.tech-about .top {
+    width: 117px;
+    height: 114px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+}
+.tech-about .bottom {
+    width: 636px;
+    height: 100px;
+    display: flex;
+    gap: 24px;
+}
+.tech-about .bottom img {
+    width: 140px;
+    height: 100px;
+    border-radius: 12px;
+    
+}
+.about {
+    width: 636px;
+    height: 740px;
+    border: 1px solid aqua;
+}
+.tech-about .about ul li {
+    list-style: none;
+}
+.tech-about .about ul {
+    margin-top: 20px;
+}
+.tech-about .about .car-features {
+    width: 636px;
+    height: 320px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.tech-about .about .car-f {
+    width: 196px;
+    height: 148px;
+    border-radius: 12px;
+    background-color: #FAFAFA;
+    padding: 24px;
+}
